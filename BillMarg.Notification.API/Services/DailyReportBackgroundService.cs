@@ -79,8 +79,8 @@ namespace BillMarg.Notification.API.Services
 
                     DateTime nextRun =
                         indiaNow.Date
-                            .AddHours(23)
-                            .AddMinutes(32);
+                            .AddHours(19)
+                            .AddMinutes(30);
 
 
                     // =================================================
