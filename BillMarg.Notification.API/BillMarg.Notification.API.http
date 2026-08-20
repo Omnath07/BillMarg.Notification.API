@@ -1,0 +1,6 @@
+@BillMarg.Notification.API_HostAddress = http://localhost:5189
+
+GET {{BillMarg.Notification.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
