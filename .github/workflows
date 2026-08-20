@@ -39,8 +39,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER_NOTIFY_DEV }}
           username: ${{ secrets.FTP_USERNAME_NOTIFY_DEV }}
           password: ${{ secrets.FTP_PASSWORD_NOTIFY_DEV }}
-          server-dir: /
-          local-dir: ./
+          server-dir: /              # ✅ Root directory (change if needed)
+          local-dir: ./publish/
           protocol: ftp
           port: 21
           log-level: verbose
