@@ -22,24 +22,24 @@ jobs:
 
       # Step 3: Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore BillMarg.Notification.API/BillMarg.Notification.API.csproj
 
       # Step 4: Build project
       - name: Build project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build BillMarg.Notification.API/BillMarg.Notification.API.csproj --configuration Release --no-restore
 
       # Step 5: Publish project
       - name: Publish project
-        run: dotnet publish -c Release -o ./publish/
+        run: dotnet publish BillMarg.Notification.API/BillMarg.Notification.API.csproj -c Release -o ./publish/
 
-      # Step 6: Upload files to FTP server
-      - name: Deploy to FTP Server
+      # Step 6: Deploy to FTP server
+      - name: Upload files to FTP server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
           server: ${{ secrets.FTP_SERVER_NOTIFY_DEV }}
           username: ${{ secrets.FTP_USERNAME_NOTIFY_DEV }}
           password: ${{ secrets.FTP_PASSWORD_NOTIFY_DEV }}
-          server-dir: /               # ✅ তোমার dev folder path
+          server-dir: /www/devnotify/        # ✅ তোমার API folder path
           local-dir: ./publish/
           protocol: ftp
           port: 21
