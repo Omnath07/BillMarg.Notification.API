@@ -88,6 +88,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BillMarg Notification API v1");
+    c.RoutePrefix = "swagger";
+});
+
 
 // =====================================================
 // HTTPS
