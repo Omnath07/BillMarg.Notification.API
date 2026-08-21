@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup .NET 8
+      # Step 2: Setup .NET 8 SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -22,15 +22,15 @@ jobs:
 
       # Step 3: Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore BillMarg.Notification.API/BillMarg.Notification.API.csproj
 
       # Step 4: Build project
       - name: Build project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build BillMarg.Notification.API/BillMarg.Notification.API.csproj --configuration Release --no-restore
 
       # Step 5: Publish project
       - name: Publish project
-        run: dotnet publish -c Release -o ./publish/ --no-build
+        run: dotnet publish BillMarg.Notification.API/BillMarg.Notification.API.csproj -c Release -o ./publish/
 
       # Step 6: Deploy to FTP server
       - name: Upload files to FTP server
@@ -39,7 +39,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER_NOTIFY_DEV }}
           username: ${{ secrets.FTP_USERNAME_NOTIFY_DEV }}
           password: ${{ secrets.FTP_PASSWORD_NOTIFY_DEV }}
-          server-dir: /              # ✅ Root directory (change if needed)
+          server-dir: /www/devnotify/        # ✅ তোমার API folder path
           local-dir: ./publish/
           protocol: ftp
           port: 21
@@ -48,4 +48,5 @@ jobs:
             .git*
             .github/**
             *.tmp
+            *.md
           dangerous-clean-slate: false
