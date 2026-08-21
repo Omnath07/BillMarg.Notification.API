@@ -69,6 +69,8 @@ builder.Services.AddHostedService<
     DailyReportBackgroundService>();
 
 builder.Services.AddScoped<IDailyStockReportService, DailyStockReportService>();
+builder.Services.AddScoped<IPurchaseStockAlertService,
+    PurchaseStockAlertService>();
 
 // =====================================================
 // BUILD APPLICATION

@@ -79,8 +79,8 @@ namespace BillMarg.Notification.API.Services
 
                     DateTime nextRun =
                         indiaNow.Date
-                            .AddHours(20)
-                            .AddMinutes(46);
+                            .AddHours(21)
+                            .AddMinutes(22);
 
 
                     // =================================================
@@ -151,6 +151,10 @@ namespace BillMarg.Notification.API.Services
                     await RunDailyStockInventoryAsync(
                         stoppingToken);
 
+
+
+                    await RunPurchaseStockAlertsAsync(
+                    stoppingToken);
 
                     // =================================================
                     // COMPLETED
@@ -336,6 +340,50 @@ namespace BillMarg.Notification.API.Services
                 // Do NOT throw.
             }
         }
+
+        // =============================================================
+        // 4. PURCHASE STOCK ALERT
+        // =============================================================
+
+        public async Task RunPurchaseStockAlertsAsync(
+            CancellationToken stoppingToken)
+        {
+            try
+            {
+                _logger.LogInformation(
+                    "----------------------------------------------------");
+
+                _logger.LogInformation(
+                    "STARTING PURCHASE STOCK ALERTS.");
+
+                _logger.LogInformation(
+                    "----------------------------------------------------");
+
+                using IServiceScope scope =
+                    _scopeFactory.CreateScope();
+
+                var service =
+                    scope.ServiceProvider
+                        .GetRequiredService<
+                            IPurchaseStockAlertService>();
+
+                await service.SendPurchaseStockAlertsAsync(
+                    stoppingToken);
+
+                _logger.LogInformation(
+                    "PURCHASE STOCK ALERTS COMPLETED.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "PURCHASE STOCK ALERTS FAILED.");
+
+                // Do NOT throw.
+                // Other reports should continue.
+            }
+        }
+
 
 
         // =============================================================
