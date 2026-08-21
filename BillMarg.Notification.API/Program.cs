@@ -81,12 +81,6 @@ var app = builder.Build();
 // DEVELOPMENT ENVIRONMENT
 // =====================================================
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-
-    app.UseSwaggerUI();
-}
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
