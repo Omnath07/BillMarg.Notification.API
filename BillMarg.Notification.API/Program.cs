@@ -77,9 +77,6 @@ builder.Services.AddScoped<IDailyStockReportService, DailyStockReportService>();
 var app = builder.Build();
 
 
-// =====================================================
-// DEVELOPMENT ENVIRONMENT
-// =====================================================
 
 
 app.UseSwagger();
