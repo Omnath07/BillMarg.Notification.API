@@ -39,7 +39,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER_NOTIFY_DEV }}
           username: ${{ secrets.FTP_USERNAME_NOTIFY_DEV }}
           password: ${{ secrets.FTP_PASSWORD_NOTIFY_DEV }}
-          server-dir: /www/devnotify/        # ✅ তোমার API folder path
+          server-dir: /       # ✅ তোমার API folder path
           local-dir: ./publish/
           protocol: ftp
           port: 21
