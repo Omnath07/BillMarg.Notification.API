@@ -1,4 +1,5 @@
-﻿using BillSathi.Models;
+﻿
+using BillMarg.Notification.API.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

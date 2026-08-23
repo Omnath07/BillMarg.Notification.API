@@ -71,6 +71,7 @@ builder.Services.AddHostedService<
 builder.Services.AddScoped<IDailyStockReportService, DailyStockReportService>();
 builder.Services.AddScoped<IPurchaseStockAlertService,
     PurchaseStockAlertService>();
+builder.Services.AddScoped<IPendingPaymentAlertService, PendingPaymentAlertService>();
 
 // =====================================================
 // BUILD APPLICATION

@@ -156,6 +156,9 @@ namespace BillMarg.Notification.API.Services
                     await RunPurchaseStockAlertsAsync(
                     stoppingToken);
 
+                    await RunPendingPaymentAlertsAsync(
+                stoppingToken);
+
                     // =================================================
                     // COMPLETED
                     // =================================================
@@ -384,7 +387,52 @@ namespace BillMarg.Notification.API.Services
             }
         }
 
+        // =============================================================
+        // 5. PENDING PAYMENT ALERT
+        // =============================================================
 
+        private async Task RunPendingPaymentAlertsAsync(
+            CancellationToken stoppingToken)
+        {
+            try
+            {
+                _logger.LogInformation(
+                    "----------------------------------------------------");
+
+                _logger.LogInformation(
+                    "STARTING PENDING PAYMENT ALERTS.");
+
+                _logger.LogInformation(
+                    "----------------------------------------------------");
+
+
+                using IServiceScope scope =
+                    _scopeFactory.CreateScope();
+
+
+                var service =
+                    scope.ServiceProvider
+                        .GetRequiredService<
+                            IPendingPaymentAlertService>();
+
+
+                await service.SendPendingPaymentAlertsAsync(
+                    stoppingToken);
+
+
+                _logger.LogInformation(
+                    "PENDING PAYMENT ALERTS COMPLETED.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "PENDING PAYMENT ALERTS FAILED.");
+
+                // Do NOT throw.
+                // Other reports should continue.
+            }
+        }
 
         // =============================================================
         // INDIA TIME

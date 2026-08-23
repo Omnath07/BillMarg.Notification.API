@@ -1,9 +1,9 @@
-﻿using BillSathi.Models;
+﻿using BillMarg.Notification.API.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BillSathi.Models
+namespace BillMarg.Notification.API.Models
 {
     public class PaymentDetails
     {

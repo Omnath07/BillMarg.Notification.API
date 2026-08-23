@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Numerics;
 using System.ComponentModel.DataAnnotations;
 
-namespace BillSathi.Models
+namespace BillMarg.Notification.API.Models
 {
     public class Users
     {

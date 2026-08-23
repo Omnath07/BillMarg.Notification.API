@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace BillSathi.Models
+namespace BillMarg.Notification.API.Models
 {
     public class Purchase
     {

@@ -1,8 +1,7 @@
 ﻿using BillMarg.Notification.API.Data;
 using BillMarg.Notification.API.Interface;
 using BillMarg.Notification.API.Model;
-
-using BillSathi.Models;
+using BillMarg.Notification.API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -176,6 +175,14 @@ namespace BillMarg.Notification.API.Services
                 .ToListAsync();
 
 
+            // -----------------------------------------------------
+            // QUICK BILLS
+            // -----------------------------------------------------
+            var quickBills = await _context.QuickBills
+                .AsNoTracking()
+                .Where(x => x.UserId == userId && x.BillDate >= today && x.BillDate < tomorrow)
+                .ToListAsync();
+
             // =====================================================
             // CALCULATIONS
             // =====================================================
@@ -195,6 +202,7 @@ namespace BillMarg.Notification.API.Services
             decimal paymentReceived =
                 payments.Sum(x => x.Amount);
 
+            decimal quickBillAmount = quickBills.Sum(x => x.GrandTotal);
 
             // =====================================================
             // EMAIL SUBJECT
@@ -221,7 +229,7 @@ namespace BillMarg.Notification.API.Services
                     purchases.Count,
                     purchaseAmount,
                     payments.Count,
-                    paymentReceived);
+                    paymentReceived, quickBillAmount);
 
 
             // =====================================================
@@ -277,7 +285,7 @@ namespace BillMarg.Notification.API.Services
             int purchaseCount,
             decimal purchaseAmount,
             int paymentCount,
-            decimal paymentReceived)
+            decimal paymentReceived, decimal quickBillAmount)
         {
             string businessName =
                 string.IsNullOrWhiteSpace(user.BusinessName)
@@ -654,6 +662,42 @@ Here is your daily business summary for
 </tr>
 
 
+ <!-- ================================================= -->
+    <!-- QUICKBILL -->
+    <!-- ================================================= -->
+
+    <tr>
+    <td style='padding:5px 35px 25px;'>
+
+    <div style='background:#fff3cd;
+                border-radius:12px;
+                padding:20px;
+                text-align:center;'>
+
+        <div style='font-size:13px;
+                    color:#856404;'>
+            Quick Bills Generated Today
+        </div>
+
+        <div style='font-size:28px;
+                    font-weight:bold;
+                    color:#fd7e14;
+                    margin-top:6px;'>
+            ₹ {quickBillAmount:N2}
+        </div>
+
+        <div style='font-size:13px;
+                    color:#777;
+                    margin-top:5px;'>
+            Total value of all QuickBills created
+        </div>
+
+    </div>
+
+    </td>
+    </tr>
+
+
 <!-- ================================================= -->
 <!-- QUICK SUMMARY -->
 <!-- ================================================= -->
@@ -740,6 +784,12 @@ Here is your daily business summary for
 
 </tr>
 
+
+<!-- ✅ NEW QUICKBILL ROW -->
+<tr>
+    <td style='border-top:1px solid #eee;'>Quick Bills</td>
+    <td align='right' style='border-top:1px solid #eee;color:#fd7e14;'>₹ {quickBillAmount:N2}</td>
+</tr>
 
 </table>
 

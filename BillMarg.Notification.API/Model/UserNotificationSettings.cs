@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BillSathi.Models
+namespace BillMarg.Notification.API.Models
 {
     public class UserNotificationSettings
     {

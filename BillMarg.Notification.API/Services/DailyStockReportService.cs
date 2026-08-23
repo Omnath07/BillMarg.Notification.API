@@ -1,7 +1,7 @@
 ﻿using BillMarg.Notification.API.Data;
 using BillMarg.Notification.API.Interface;
 using BillMarg.Notification.API.Model;
-using BillSathi.Models;
+using BillMarg.Notification.API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BillSathi.Models
+namespace BillMarg.Notification.API.Models
 {
     public class Invoices
     {
@@ -31,7 +31,7 @@ namespace BillSathi.Models
 
         public DateTime DueDate { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         public decimal Tax { get; set; }
 

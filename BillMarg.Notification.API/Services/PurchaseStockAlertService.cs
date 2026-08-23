@@ -1,7 +1,6 @@
 ﻿using BillMarg.Notification.API.Data;
 using BillMarg.Notification.API.Interface;
 using BillMarg.Notification.API.Models;
-using BillSathi.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

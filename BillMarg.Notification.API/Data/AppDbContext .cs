@@ -1,4 +1,4 @@
-﻿using global::BillSathi.Models;
+﻿using BillMarg.Notification.API.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BillMarg.Notification.API.Data
@@ -75,6 +75,8 @@ namespace BillMarg.Notification.API.Data
         // =====================================================
 
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<QuickBill> QuickBills { get; set; }
+        
 
         // =====================================================
         // NOTIFICATION
