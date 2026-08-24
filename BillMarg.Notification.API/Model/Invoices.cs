@@ -38,6 +38,7 @@ namespace BillMarg.Notification.API.Models
         public decimal Discount { get; set; }
 
         public bool IsRecurring { get; set; }
+        public string? RecurrenceType { get; set; }
         public string? PdfPath { get; set; }
 
 

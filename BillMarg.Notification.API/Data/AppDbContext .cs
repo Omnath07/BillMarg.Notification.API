@@ -76,7 +76,10 @@ namespace BillMarg.Notification.API.Data
 
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<QuickBill> QuickBills { get; set; }
+        public DbSet<StockTransaction> StockTransactions { get; set; }
         
+
+
 
         // =====================================================
         // NOTIFICATION
