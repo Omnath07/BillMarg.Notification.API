@@ -2,6 +2,8 @@ using BillMarg.Notification.API.Data;
 using BillMarg.Notification.API.Interface;
 using BillMarg.Notification.API.Model;
 using BillMarg.Notification.API.Services;
+
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,12 +27,7 @@ builder.Services.AddSwaggerGen();
 // DATABASE
 // =====================================================
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString(
-            "DefaultConnection"));
-});
+
 
 
 // =====================================================
