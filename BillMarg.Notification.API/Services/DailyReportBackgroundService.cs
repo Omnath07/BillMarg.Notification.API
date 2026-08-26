@@ -77,10 +77,30 @@ namespace BillMarg.Notification.API.Services
                     // Current schedule = 10:05 PM IST
                     // =================================================
 
-                    DateTime nextRun =
-                        indiaNow.Date
-                            .AddHours(20)
-                            .AddMinutes(10);
+                    // Define window
+                    int startHour = 16;   // 10 AM
+                    int endHour = 23;   // 11 PM
+
+                    // Current India time
+
+                    // If current time < startHour → run at startHour
+                    // If current time > endHour → schedule next day at startHour
+                    DateTime nextRun;
+
+                    if (indiaNow.Hour < startHour)
+                    {
+                        nextRun = indiaNow.Date.AddHours(startHour);
+                    }
+                    else if (indiaNow.Hour >= endHour)
+                    {
+                        nextRun = indiaNow.Date.AddDays(1).AddHours(startHour);
+                    }
+                    else
+                    {
+                        // 👉 Already inside window → allow manual trigger
+                        nextRun = indiaNow;
+                    }
+
 
 
                     // =================================================
