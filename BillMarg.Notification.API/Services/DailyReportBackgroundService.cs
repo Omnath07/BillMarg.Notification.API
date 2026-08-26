@@ -101,8 +101,6 @@ namespace BillMarg.Notification.API.Services
                         nextRun = indiaNow;
                     }
 
-
-
                     // =================================================
                     // IF TODAY'S TIME PASSED
                     // RUN TOMORROW
