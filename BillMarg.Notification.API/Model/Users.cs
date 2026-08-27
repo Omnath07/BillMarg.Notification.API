@@ -28,7 +28,7 @@ namespace BillMarg.Notification.API.Models
 
         [MaxLength(255)]
         public string BusinessName { get; set; }
-
+        public int? ParentUserId { get; set; }
         public string? Address { get; set; }
 
         [MaxLength(255)]
@@ -63,7 +63,7 @@ namespace BillMarg.Notification.API.Models
         public string FullName { get; set; }
 
         [Required, EmailAddress, MaxLength(255)]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required, MaxLength(255)]
         public string Password { get; set; }
@@ -72,8 +72,8 @@ namespace BillMarg.Notification.API.Models
         public string Phone { get; set; }
 
         [MaxLength(255)]
-        public string BusinessName { get; set; }
-
+        public string? BusinessName { get; set; }
+       
         public string Logo { get; set; }  // Path or URL
 
         public DateTime CreatedOn { get; set; } = DateTime.Now;

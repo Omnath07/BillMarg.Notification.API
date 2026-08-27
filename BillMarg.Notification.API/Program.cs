@@ -75,7 +75,13 @@ builder.Services.AddScoped<IPurchaseStockAlertService,
 builder.Services.AddScoped<IPendingPaymentAlertService, PendingPaymentAlertService>();
 builder.Services.AddScoped<IRecurringInvoiceService, RecurringInvoiceService>();
 builder.Services.AddHostedService<RecurringInvoiceBackgroundService>();
+builder.Services.AddScoped<
+    IOverdueInvoiceEmailService,
+    OverdueInvoiceEmailService>();
 
+builder.Services.AddScoped<
+    ISubscriptionRenewalEmailService,
+    SubscriptionRenewalEmailService>();
 
 // =====================================================
 // BUILD APPLICATION

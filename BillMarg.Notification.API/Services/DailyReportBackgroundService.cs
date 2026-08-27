@@ -82,8 +82,8 @@ namespace BillMarg.Notification.API.Services
                     // 10:05 PM IST
                     // =================================================
 
-                    int runHour = 16;
-                    int runMinute = 45;
+                    int runHour = 17;
+                    int runMinute = 33;
 
                     DateTime nextRun = indiaNow.Date
                         .AddHours(runHour)
