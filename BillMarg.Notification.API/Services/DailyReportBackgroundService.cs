@@ -78,7 +78,7 @@ namespace BillMarg.Notification.API.Services
                     // =================================================
 
                     // Define window
-                    int startHour = 16;   // 10 AM
+                    int startHour = 10;   // 10 AM
                     int endHour = 23;   // 11 PM
 
                     // Current India time
