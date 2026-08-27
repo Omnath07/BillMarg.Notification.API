@@ -77,40 +77,26 @@ namespace BillMarg.Notification.API.Services
                     // Current schedule = 10:05 PM IST
                     // =================================================
 
-                    // Define window
-                    int startHour = 10;   // 10 AM
-                    int endHour = 23;   // 11 PM
-
-                    // Current India time
-
-                    // If current time < startHour → run at startHour
-                    // If current time > endHour → schedule next day at startHour
-                    DateTime nextRun;
-
-                    if (indiaNow.Hour < startHour)
-                    {
-                        nextRun = indiaNow.Date.AddHours(startHour);
-                    }
-                    else if (indiaNow.Hour >= endHour)
-                    {
-                        nextRun = indiaNow.Date.AddDays(1).AddHours(startHour);
-                    }
-                    else
-                    {
-                        // 👉 Already inside window → allow manual trigger
-                        nextRun = indiaNow;
-                    }
-
                     // =================================================
-                    // IF TODAY'S TIME PASSED
-                    // RUN TOMORROW
+                    // AUTOMATIC DAILY REPORT TIME
+                    // 10:05 PM IST
                     // =================================================
 
+                    int runHour = 16;
+                    int runMinute = 45;
+
+                    DateTime nextRun = indiaNow.Date
+                        .AddHours(runHour)
+                        .AddMinutes(runMinute);
+
+                    // If today's automatic time has already passed,
+                    // schedule for tomorrow.
                     if (indiaNow >= nextRun)
                     {
                         nextRun = nextRun.AddDays(1);
                     }
 
+                   
 
                     // =================================================
                     // CALCULATE DELAY
