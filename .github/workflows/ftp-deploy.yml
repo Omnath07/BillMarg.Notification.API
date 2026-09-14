@@ -1,4 +1,4 @@
-name: FTP Deploy (Production)
+name: FTP Deploy (Prod)
 
 on:
   push:
