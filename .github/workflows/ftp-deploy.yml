@@ -1,0 +1,52 @@
+name: FTP Deploy (Dev Branch)
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Setup .NET 8 SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      # Step 3: Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore BillMarg.Notification.API/BillMarg.Notification.API.csproj
+
+      # Step 4: Build project
+      - name: Build project
+        run: dotnet build BillMarg.Notification.API/BillMarg.Notification.API.csproj --configuration Release --no-restore
+
+      # Step 5: Publish project
+      - name: Publish project
+        run: dotnet publish BillMarg.Notification.API/BillMarg.Notification.API.csproj -c Release -o ./publish/
+
+      # Step 6: Deploy to FTP server
+      - name: Upload files to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER_NOTIFY_PROD }}
+          username: ${{ secrets.FTP_USERNAME_NOTIFY_PROD }}
+          password: ${{ secrets.FTP_PASSWORD_NOTIFY_PROD }}
+          server-dir: /       # ✅ তোমার API folder path
+          local-dir: ./publish/
+          protocol: ftp
+          port: 21
+          log-level: verbose
+          exclude: |
+            .git*
+            .github/**
+            *.tmp
+            *.md
+          dangerous-clean-slate: false
