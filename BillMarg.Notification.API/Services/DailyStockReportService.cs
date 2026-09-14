@@ -475,12 +475,12 @@ namespace BillMarg.Notification.API.Services
 
             string logoUrl =
                 string.IsNullOrWhiteSpace(_emailSettings.LogoUrl)
-                    ? "https://dev.billmarg.com/image/billmarg-logo.png"
+                    ? "https://billmarg.com/image/billmarg-logo.png"
                     : _emailSettings.LogoUrl;
 
             string websiteUrl =
                 string.IsNullOrWhiteSpace(_emailSettings.WebsiteUrl)
-                    ? "https://dev.billmarg.com"
+                    ? "https://billmarg.com"
                     : _emailSettings.WebsiteUrl;
 
             string rows = "";
@@ -1072,12 +1072,12 @@ This is an automated BillMarg daily inventory report.
 
             string logoUrl =
                 string.IsNullOrWhiteSpace(_emailSettings.LogoUrl)
-                    ? "https://dev.billmarg.com/image/billmarg-logo.png"
+                    ? "https://billmarg.com/image/billmarg-logo.png"
                     : _emailSettings.LogoUrl;
 
             string websiteUrl =
                 string.IsNullOrWhiteSpace(_emailSettings.WebsiteUrl)
-                    ? "https://dev.billmarg.com"
+                    ? "https://billmarg.com"
                     : _emailSettings.WebsiteUrl;
 
             string rows = "";
