@@ -35,10 +35,6 @@ namespace BillMarg.Notification.API.Controllers
         }
 
 
-        // =========================================================
-        // TEST ONE USER
-        // =========================================================
-
         [HttpPost("send/{userId:int}")]
         public async Task<IActionResult> SendToUser(
             int userId)
