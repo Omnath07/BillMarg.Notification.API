@@ -1,4 +1,4 @@
-name: FTP Deploy (Prod)
+name: FTP Deploy (Production)
 
 on:
   push:
@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -22,20 +23,15 @@ jobs:
         run: dotnet restore BillMarg.Notification.API/BillMarg.Notification.API.csproj
 
       - name: Build project
-        run: dotnet build BillMarg.Notification.API/BillMarg.Notification.API.csproj \
-          --configuration Release \
-          --no-restore
+        run: dotnet build BillMarg.Notification.API/BillMarg.Notification.API.csproj --configuration Release --no-restore
 
       - name: Publish project
-        run: dotnet publish BillMarg.Notification.API/BillMarg.Notification.API.csproj \
-          --configuration Release \
-          --no-restore \
-          --output ./publish
+        run: dotnet publish BillMarg.Notification.API/BillMarg.Notification.API.csproj --configuration Release --no-restore --output ./publish
 
       - name: Show published files
         run: |
           echo "========== PUBLISHED FILES =========="
-          find ./publish -maxdepth 2 -type f | sort
+          find ./publish -type f | sort
           echo "===================================="
 
       - name: Deploy to FTP server
@@ -44,19 +40,14 @@ jobs:
           server: ${{ secrets.FTP_SERVER_NOTIFY_PROD }}
           username: ${{ secrets.FTP_USERNAME_NOTIFY_PROD }}
           password: ${{ secrets.FTP_PASSWORD_NOTIFY_PROD }}
-
-          protocol: ftp
-          port: 21
-
           server-dir: /
           local-dir: ./publish/
-
+          protocol: ftp
+          port: 21
           log-level: verbose
-
           exclude: |
             .git*
             .github/**
             *.tmp
             *.md
-
           dangerous-clean-slate: false
